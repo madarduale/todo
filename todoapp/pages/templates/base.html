@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Todo App</title>
+      <!-- <script src="https://kit.fontawesome.com/f10cb88d70.js" crossorigin="anonymous"></script> -->
+      <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">
+      <link rel="stylesheet" href="{% static 'css/all.css' %}">
+      <link  href="{% static 'webfonts/fa-solid-900.ttf' %}">
+      <link  href="{% static 'webfonts/fa-solid-900.woff2' %}">
+  </head>
+  <body>
+    
+    <main >
+      <div  >
+      {% block content %}
+    
+   
+      {% endblock content %}
+      </div>
+    </main>
+
+ 
+ 
+  
+
+    <script src="{% static '/js/all.js' %}"></script>
+    <script src="{% static '/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static '/js/bootstrap.bundle.js' %}"></script>
+    <script src="{% static '/js/bootstrap.js' %}"></script>
+    <script src="{% static '/js/jquery-3.6.0.min.js' %}"></script>
+    
+  </body>
+</html>

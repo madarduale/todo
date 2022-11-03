@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'todoapp/navbar.html' %}
+<br/>
+<div class="jumbotron">
+<h1 class="display-4">Todo task app</h1>
+<p class="lead">A todo list website built with Django.</p>
+<p class="lead">
+<a class="btn btn-primary btn-lg" href="{% url 'todolist' %}"
+role="button">View All Tasks</a>
+</p>
+</div>
+{% endblock content %}
+    

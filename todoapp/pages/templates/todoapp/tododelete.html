@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% include 'todoapp/navbar.html' %}
+
+<h1>Delete</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>Are you sure want to delete {{object.text}}?</p>
+        <button class="btn  ml-2 btn-info" type="submit">confirm</button> |<a href="{% url 'todolist' %}"> or back to home</a>
+    </form>
+{% endblock content %}
+    

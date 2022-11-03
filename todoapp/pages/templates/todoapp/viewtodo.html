@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+{% include 'todoapp/navbar.html' %}
+
+
+   
+ 
+    <section class="vh-auto gradient-custom-2">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-md-12 col-xl-10">
+            
+                    <div class="card mask-custom">
+                        <div class="card-body p-1 text-white">
+                            
+                            <div class="text-center pt-3 pb-2">
+                                
+                                {% if user.profile.profile_image %}
+                                <span> <img src="{{user.profile.profile_image.url}}" alt="Check"  style="  width: 200px; height: 200px; border-radius: 50%;"><a href="{% url 'userimageedit'  user.profile.pk%}" data-mdb-toggle="tooltip" title="Camera" class="ml-3"><i class="fas fa-camera fa-lg text-success me-3"></i></a></span>
+                                <p><span>{{user.profile.bio}}</span></p>
+                                <p><span>{{user.profile.user}}</span></p>
+                                    {% else %}
+                                <span> <img src="{% static 'images/user-286.png' %}" alt="Check"  style="  width: 200px; height: 200px; border-radius: 50%;   " class="image"><a href="{% url 'userimageupload'  %}" data-mdb-toggle="tooltip" title="Camera" class="icon" ><i class="fas fa-camera fa-lg text-success me-3"></i></a></span>
+                                
+                                {% endif %}
+                                    
+                                
+                               
+                                <h2 class="my-4">Task List</h2>
+                            </div>
+                
+                            <table class="table text-white mb-0">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Person</th>
+                                        <th scope="col">Task</th>
+                                        <th scope="col">Priority</th>
+                                        <th scope="col">Created</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                
+                                {% for todo in object_list %}
+                                <tbody>
+                                    
+                                    {% if todo.complete == True  %}
+                                     
+                                            <tr class="fw-normal" style="text-decoration: line-through; background-color: #fff; color: #000;">
+                                                <th>
+                                                    
+                                                    <span class="ms-2">{{todo.author}}</span>
+                                                </th>
+                                                <td class="align-middle" >
+                                                    <span >{{todo.text}}</span >
+                                                    </td>
+                                                    <td class="align-middle"  >
+                                                    <h6 class="mb-0"><strike class="badge bg-danger "  >{{todo.selection}}</strike></h6>
+                                                    </td>
+                                                    <td class="align-middle">
+                                                    <h6 class="mb-0"><strike class="badge bg-info">{{todo.date}}</strike></h6>
+                                                </td>
+                                                <td class="align-middle">
+                                                    
+                                                    <!-- <input class="form-check-input checked" name=""  type="checkbox" value="checkedValue" aria-label="Text for screen reader" > -->
+                                                    
+                                                    
+                                                    <a href="{% url 'todoupdate' todo.pk %}" data-mdb-toggle="tooltip" title="Edit" class="ml-3"><i class="fas fa-edit fa-lg text-success me-3"></i></a>
+                                                    <a href="{% url 'tododelete' todo.pk %}" data-mdb-toggle="tooltip" title="Remove" class="ml-3"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>
+                                                    
+                                                </td>
+                                            </tr>        
+                                        
+                                        {% else %}
+                                        <tr class="fw-normal">
+                                            <th>
+                                                
+                                                <span class="ms-2">{{todo.author}}</span>
+                                            </th>
+                                            <td class="align-middle" >
+                                                <span >{{todo.text}}</span >
+                                                </td>
+                                                <td class="align-middle"  >
+                                                    <h6 class="mb-0"><span class="badge bg-danger "  >{{todo.selection}}</span></h6>
+                                                </td>
+                                                <td class="align-middle">
+                                                    <h6 class="mb-0"><span class="badge bg-info">{{todo.date}}</span></h6>
+                                                </td>
+                                                
+                                                {% if user == todo.author %}
+                                                
+                                                <td class="align-middle">
+                                                    
+                                                    <!-- <input class="form-check-input checked" name=""  type="checkbox" value="checkedValue" aria-label="Text for screen reader" > -->
+                                                    
+                                                    
+                                                    <a href="{% url 'todoupdate' todo.pk %}" data-mdb-toggle="tooltip" title="Edit" class="ml-3"><i class="fas fa-edit fa-lg text-success me-3"></i></a>
+                                                    <a href="{% url 'tododelete' todo.pk %}" data-mdb-toggle="tooltip" title="Remove" class="ml-3"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>
+                                                    
+                                                </td>
+                                                {% endif %}
+                                            </tr>
+                                        {% endif %}
+                                
+                                </tbody>
+                             
+                                
+                                {% endfor %}
+                            </table>
+
+                            <nav aria-label="Page navigation example " style="margin-left: 320px;">
+                                {% if is_paginated %}
+
+                                    <ul class="pagination">
+                                        {% if page_obj.has_previous %}
+                                            <li class="page-item">
+                                                <a class="page-link" href="?page={{page_obj.previous_page_number}}"
+                                                >&laquo;</a
+                                                >
+                                            </li>
+                                        {% else %}
+                                            <li class="page-item disabled">
+                                                <a class="page-link" href="#">&laquo;</a>
+                                            </li>
+                                        {% endif %} 
+
+                                        {% for i in paginator.page_range %} 
+                                            {% if page_obj.number == i %}
+                                                    <li class="page-item"><a class="page-link active">{{ i }}</a></li>
+                                            {% else %}
+                                                <li class="page-item">
+                                                    <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                                                </li>
+                                            {% endif %} 
+                                        {% endfor %} 
+
+                                        {% if page_obj.has_next %}
+                                            <li class="page-item">
+                                                <a href="?page={{page_obj.next_page_number}}" class="page-link"
+                                                >&raquo;</a
+                                                >
+                                            </li>
+                                        {% else %}
+                                            <li class="page-item disabled">
+                                                <a class="page-link">&raquo;</a>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                {% endif %}
+                              </nav>
+            
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+        </div>
+    </section>
+        
+   
+       
+{% endblock content %}
+    

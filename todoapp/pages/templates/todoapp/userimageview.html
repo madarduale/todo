@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+
+<div class="text-center pt-2 pb-2 bg-dark mt-5">
+                           
+                            
+   
+
+
+   <img src="{{user.profile.profile_image.url}}"  style="  width: 200px; height: 200px; border-radius: 50%;">
+   <span>{{user.profile.bio}}</span>|
+   <span>|{{user.profile.user}}</span>
+   <span>|{{user.profile.profile_image}}</span>
+   
+ 
+
+
+    
+</div>
+{% endblock content %}

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<nav class=" navbar   navbar-expand-lg navbar-light bg-light ">
+    <a class="navbar-brand" href="{% url 'home' %}">TODO APP</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      
+      {% if user.is_authenticated %}
+        
+      <ul class="navbar-nav ">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'todolist' %}">Todo list <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'todocreation' %}">+new Todo </a>
+        </li>
+        
+        <span class="username" style="left: 550px; top:18px; position:absolute; font-size: 2rem; color: rgb(74, 74, 235);">  hello {{ user.username }}</span>
+        <div class="dropdown">
+          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            More
+          </button>
+          <li class="nav-item dropdown-menu " >
+            <a class="nav-link dropdown-item" href="{% url 'logout' %}">Logout</a> 
+            <a class="nav-link dropdown-item" href="{% url 'edituser' user.pk %}">Edit Your Account</a> 
+            <a class="nav-link dropdown-item" href="{% url 'deleteuser' user.pk %}">Delete Your Account</a>
+          </li>
+        </div>
+
+      
+        {% else %}
+        <li class="nav-item  " style=" list-style: none;">
+          <a class="nav-link " href="{% url 'login' %}">Login</a>
+        </li>
+        <li class="nav-item  " style=" list-style: none;" >
+          <a class="nav-link " href="{% url 'signup' %}">SignUp</a>
+        </li>
+      </ul>
+        {% endif %}
+        {% if user.is_authenticated %}
+        
+       
+        <form class="form-inline my-2 my-lg-0 ml-lg-5">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search_area">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="search">Search</button>
+        </form>
+          
+      {%endif%}
+    </div>
+  </nav>
+{% endblock content %}
+    

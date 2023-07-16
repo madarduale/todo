@@ -1,2 +1,6 @@
 .env
-__Pycache__
+__Pycache__/
+*.log
+*.pot
+*.pyc
+local_settings.py

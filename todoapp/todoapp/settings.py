@@ -29,6 +29,8 @@ SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+
+# DEBUG = env.bool('DEBUG', default=False)
 #DEBUG = env.bool('DEBUG', default=False)
 
 ALLOWED_HOSTS = ['*']
@@ -136,7 +138,7 @@ STATICFILES_DIRS = [
 ]
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'static/images')
 
-STATIC_ROOT= os.path.join(BASE_DIR, 'collectstatic/')
+STATIC_ROOT= os.path.join(BASE_DIR, 'staticfiles/')
 STATICFILES_STORAGE ='whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

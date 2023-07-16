@@ -1,2 +1,4 @@
 .env
-__Pycache__
+__Pycache__/
+*.log
+local_settings.py

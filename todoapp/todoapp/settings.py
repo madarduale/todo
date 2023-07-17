@@ -35,7 +35,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
-
+CSRF_TRUSTED_ORIGINS = ['https://todo-production-89f4.up.railway.app']
 # Application definition
 
 INSTALLED_APPS = [
@@ -139,7 +139,7 @@ STATICFILES_DIRS = [
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'static/images')
 
 STATIC_ROOT= os.path.join(BASE_DIR, 'staticfiles/')
-STATICFILES_STORAGE ='whitenoise.storage.CompressedManifestStaticFilesStorage'
+#STATICFILES_STORAGE ='whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 

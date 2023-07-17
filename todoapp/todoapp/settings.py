@@ -33,7 +33,7 @@ DEBUG = False
 # DEBUG = env.bool('DEBUG', default=False)
 
 ALLOWED_HOSTS = ['*']
-
+CSRF_TRUSTED_ORIGINS = ['https://todo-production-89f4.up.railway.app']
 
 # Application definition
 
@@ -90,9 +90,12 @@ WSGI_APPLICATION = 'todoapp.wsgi.application'
 
 DATABASES = {
        'default': {
-         'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': env("DB_NAME"),
         'USER': env("DB_USER"),
+        'HOST': env("DB_HOST"),
+        'PORT': env("DB_PORT"),
+        'PASSWORD': env("DB_PASSWORD"),
     }
 }
 
@@ -131,14 +134,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 MEDIA_URL = '/images/'
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-   os.path.join(BASE_DIR, 'static/',)
+   os.path.join(BASE_DIR, 'static',)
 ]
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'static/images')
 
 STATIC_ROOT= os.path.join(BASE_DIR, 'staticfiles/')
-STATICFILES_STORAGE ='whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE ='whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
